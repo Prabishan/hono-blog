@@ -26,3 +26,15 @@ Before you start, make sure you have the following:
 ```bash
 git clone https://yourrepositoryurl.com/hono-blog.git
 cd hono-blog
+
+### Install Dependencies
+```bash
+npm install
+
+### Local Development
+To run the blog locally for development purposes:
+```bash
+npm run dev
+
+This will start a local development server. You can view your blog at 'http://localhost:8787'
+

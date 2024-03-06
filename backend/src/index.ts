@@ -4,6 +4,7 @@ import blog from './routes/blog'
 import user from './routes/user'
 import { PrismaClient } from '@prisma/client/edge'
 import { withAccelerate } from '@prisma/extension-accelerate'
+import { cors } from 'hono/cors'
 
 
 const app = new Hono<{
@@ -17,7 +18,7 @@ const app = new Hono<{
   }
 }>();
 
-
+app.use('/api/*', cors());
 
 app.route('/api/v1/user', user)
 app.route('/api/v1/blog', blog)

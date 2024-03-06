@@ -40,7 +40,7 @@ blog.use('/*', async (c, next) => {
   })
 
 blog.post('/', async (c) => {
-  
+    
     const body = await c.req.json();
     const {title, content} = body;
     const userId = c.get('userId')
@@ -78,6 +78,8 @@ blog.put('/', async (c) => {
     return c.json('blog Updated')
 })
 
+
+
 blog.get('/:id', async (c) => {
 
     const blogId = c.req.param('id')
@@ -96,5 +98,19 @@ blog.get('/:id', async (c) => {
     console.log(getBlog, "GET BLOG")
     return c.json({blog:getBlog, user:blogAuthor})
 })
+blog.get('/bulk', async (c)=> {
+    const userId = c.get('userId')
+    const prisma = c.get('prisma')
+    console.log(userId, "USER ID")
+
+    const getBulkBlog = await prisma.post.findMany({
+        where:{
+            authorId: userId
+        }
+    })
+    return c.json(getBulkBlog)  
+
+})
+
 
 export default blog;
